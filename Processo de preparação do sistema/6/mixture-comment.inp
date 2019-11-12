@@ -1,0 +1,30 @@
+#
+# A mixture of water and DPC
+#
+
+# All the atoms from diferent molecules will be separated at least 2.0
+# Anstroms at the solution.
+
+tolerance 2.0
+
+# The file type of input and output files is PDB
+
+filetype pdb
+
+# The name of the output file
+
+output mixture.pdb
+
+
+# 40. (the keyword "inside cube 0. 0. 0. 40.") could be used as well.
+
+structure water.pdb 
+  number 22496 
+  inside box 0. 0. 0. 90. 90. 90.
+end structure
+
+structure DPC_gaff.pdb
+  number 54
+  inside box 0. 0. 0. 90. 90. 90.
+end structure
+

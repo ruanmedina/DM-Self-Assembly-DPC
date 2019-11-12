@@ -1,0 +1,156 @@
+#!/bin/bash
+# Passo 1 - Criação da molécula: 
+Crie uma molécula completa, já com o estado de protonação desejado.
+* Assegure-se de ter todos os átomos de Hidrogênio
+* Otimize em 3D. (clean in 3D)
+* Salve no formato .SDF 
+
+# Passo 2 - Calcular as cargas no modelo Bond-Correction Charges (BCC)
+
+* Ative o AmberTools
+source  ~/software/amber18/amber.sh
+
+* Use o "antechamber" para
+   - Designar os TIPOS de átomos para o campo de forças GAFF2
+   - Otimizar a estrutura com o método semi-empirico AM1-BCC.
+   - Calcular as cargas com om modelo BCC
+   
+antechamber \
+	-i DPC.sdf -fi mdl \
+	-o DPC_gaff.mol2 -fo mol2 \
+	-at gaff2 \
+	-c bcc \
+	-nc 0 \
+	-pf y
+
+
+# Passo 3 - Designar parametros para o campo de forças GAFFF com o "parmchk2"
+
+parmchk2 \
+	-i DPC_gaff.mol2 -f mol2 \
+	-o DPC_gaff.frcmod -s 2 
+
+
+# Passo 4 - Converta o DPC_gaff.mol2 para o formato PDB usando o antechamber.
+antechamber \
+	-i DPC_gaff.mol2 -fi mol2 \
+	-o DPC_gaff.pdb -fo pdb 
+	
+# Passo 5 - Montar caixa de simulação na concentracao desejada usando o "PACKMOL"
+	* Usaremos o exemplo "Simple mixture of water and urea"
+		http://m3g.iqm.unicamp.br/packmol/examples.shtml
+
+	* Descarregue a molécula de água. (ou construa uma você mesmo)
+		wget http://m3g.iqm.unicamp.br/packmol/examples/water.pdb
+
+    * Descarregue o arquivo de configuração, com os comentários.
+		wget http://m3g.iqm.unicamp.br/packmol/examples/mixture-comment.inp
+    
+    * Calcule a massa molar usando o "openbabel"
+		obprop water.pdb
+		obprop DPC_gaff.pdb
+
+	* Voce deve obter: 
+		Água : 18.02 g/mol
+		  DPC : 352.47 g/mol
+
+# Passo 6 - Construir a caixa de simulação.
+Usaremos o "volume guesser" do packmol para preciso determinar volume 
+   do sistema de acordo com a densidade esperada.
+   Vamos com uma proporção de 10:1 água-DPC.
+   
+	* Vá para o website do Volume Guesser.
+	http://m3g.iqm.unicamp.br/packmol/nmols.shtml
+	
+	* Number of types of molecules:  2 
+	
+	* Desired density:	0.9 g/mL  (vamos equilibrar isso depois)
+	
+	Type 1:
+		Number of molecules: 1000 	Molar mass: 18.02  g/mol
+	Type 2:
+		Number of molecules: 100 	Molar mass: 126.18 g/mol
+
+
+	* Use tais valores para modificar o "mixture-comment.inp":
+		volume: 152630.36 Å3  
+        lado da caixa cúbica: 53.44 Å 
+     
+	* O resultado deve ficar como abaixo
+# A mixture of water and DPC
+tolerance 2.0
+filetype pdb
+output mixture.pdb
+
+structure water.pdb 
+  number 1000 
+  inside box 0. 0. 0. 53.44 53.44 53.44
+end structure
+
+structure DPC_gaff.pdb
+  number 100
+  inside box 0. 0. 0. 53.44 53.44 53.44
+end structure
+
+
+# Execte o PackMol
+packmol < mixture-comment.inp 
+
+# Passo 7 - Preparação da biblioteca para topologia do DPC para o AMBER.
+
+* Crie um arquivo chamado "tleap_lib.in" contendo os comandos abaixo.
+# Carrega o GAFF2
+source leaprc.gaff2 
+
+# Carrega os parametros GAFF a molecula DPC
+loadAmberParams DPC_gaff.frcmod
+
+# Carrega as coordenadas (.mol2 tem as ligacoes tb)
+MOL = loadMol2 DPC_gaff.mol2
+
+# Salva a topologia de referencia para a molecula DPC
+saveOff MOL DPC_gaff.lib
+
+* Execute o tleap.in
+tleap -f tleap_lib.in
+
+
+# Passo 8 (finamente) - Preparação da topologia e coordenadas para o AMBER.
+* Crie um arquivo chamado "tleap.in" contendo os comandos abaixo:
+# Carrega os campos de forças.
+  
+## GAFF2 
+source leaprc.gaff2
+
+## Agua TIP3P
+source leaprc.water.tip3p
+
+## Ions
+loadAmberParams frcmod.ionsjc_tip3p
+
+## Carrega os parametros GAFF a molecula DPC
+loadAmberParams DPC_gaff.frcmod
+
+## Carrega a biblioteca eferencia para a molecula DPC
+loadOff DPC_gaff.lib
+
+# Carrega o sistema.
+caixa = loadpdb mixture.pdb
+saveAmberParm caixa caixa.prmtop caixa.inpcrd
+savePDB caixa caixan.pdb
+
+charge caixa
+
+# Insere o numero suficiente de ions para neutralizar
+AddIons2 caixa Cl- 0
+AddIons2 caixa Na+ 0
+
+# Salva sistema com ions: Topologia (prmtop) e coordenadas (rst7)
+saveamberparm caixa ionized.prmtop ionized.rst7
+
+quit
+
+* Execute o tleap para prepaprar o sistema
+tleap -f tleap.in
+
+

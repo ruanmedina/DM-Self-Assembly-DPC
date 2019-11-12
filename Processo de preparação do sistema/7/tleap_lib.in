@@ -1,0 +1,13 @@
+## GAFF2 
+source leaprc.gaff2 
+
+# Carrega os parametros GAFF a molecula DPC
+loadAmberParams DPC_gaff.frcmod
+
+# Carrega as coordenadas (.mol2 tem as ligacoes tb)
+MOL = loadMol2 DPC_gaff.mol2
+
+# Salva a topologia de referencia para a molecula DPC
+saveOff MOL DPC_gaff.lib
+
+quit
