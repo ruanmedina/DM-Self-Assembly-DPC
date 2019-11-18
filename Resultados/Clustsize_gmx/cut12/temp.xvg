@@ -1,0 +1,17 @@
+# This file was created Thu Oct 17 23:29:07 2019
+# Created by:
+#                    :-) GROMACS - gmx clustsize, 2019.3 (-:
+# 
+# Executable:   /home/glaznmann/software/gmx2019.3/bin/gmx
+# Data prefix:  /home/glaznmann/software/gmx2019.3
+# Working dir:  /home/glaznmann/ALL_DPC/DPC2
+# Command line:
+#   gmx clustsize -s gromacs.tpr -f imaged_skip.xtc -mol -cut 1.2 -pbc
+# gmx clustsize is part of G R O M A C S:
+#
+# Getting the Right Output Means no Artefacts in Calculating Stuff
+#
+@    title "Temperature of largest cluster"
+@    xaxis  label "Time (ps)"
+@    yaxis  label "T (K)"
+@TYPE xy

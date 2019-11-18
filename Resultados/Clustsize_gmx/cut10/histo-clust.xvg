@@ -1,0 +1,69 @@
+# This file was created Mon Oct 21 15:57:36 2019
+# Created by:
+#                    :-) GROMACS - gmx clustsize, 2019.3 (-:
+# 
+# Executable:   /home/glaznmann/software/gmx2019.3/bin/gmx
+# Data prefix:  /home/glaznmann/software/gmx2019.3
+# Working dir:  /home/glaznmann/ALL_DPC/DPC2
+# Command line:
+#   gmx clustsize -s gromacs.tpr -f imaged_skip.xtc -mol -cut 1.0 -pbc
+# gmx clustsize is part of G R O M A C S:
+#
+# Georgetown Riga Oslo Madrid Amsterdam Chisinau Stockholm
+#
+@    title "Cluster size distribution"
+@    xaxis  label "Cluster size"
+@    yaxis  label "()"
+@TYPE xy
+    0     0.000
+    1     3.152
+    2     1.538
+    3     0.334
+    4     0.548
+    5     0.394
+    6     0.178
+    7     0.138
+    8     0.320
+    9     0.086
+   10     0.044
+   11     0.036
+   12     0.014
+   13     0.020
+   14     0.188
+   15     0.212
+   16     0.158
+   17     0.012
+   18     0.032
+   19     0.036
+   20     0.128
+   21     0.076
+   22     0.046
+   23     0.036
+   24     0.052
+   25     0.004
+   26     0.012
+   27     0.034
+   28     0.038
+   29     0.024
+   30     0.022
+   31     0.018
+   32     0.020
+   33     0.014
+   34     0.022
+   35     0.028
+   36     0.014
+   37     0.024
+   38     0.016
+   39     0.018
+   40     0.030
+   41     0.030
+   42     0.026
+   43     0.024
+   44     0.024
+   45     0.018
+   46     0.016
+   47     0.014
+   48     0.008
+   49     0.010
+   50     0.008
+   51     0.000

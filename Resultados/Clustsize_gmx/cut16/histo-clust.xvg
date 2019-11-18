@@ -1,0 +1,73 @@
+# This file was created Mon Oct 21 16:24:55 2019
+# Created by:
+#                    :-) GROMACS - gmx clustsize, 2019.3 (-:
+# 
+# Executable:   /home/glaznmann/software/gmx2019.3/bin/gmx
+# Data prefix:  /home/glaznmann/software/gmx2019.3
+# Working dir:  /home/glaznmann/ALL_DPC/DPC2
+# Command line:
+#   gmx clustsize -s gromacs.tpr -f imaged_skip.xtc -mol -cut 1.6 -pbc
+# gmx clustsize is part of G R O M A C S:
+#
+# Green Red Orange Magenta Azure Cyan Skyblue
+#
+@    title "Cluster size distribution"
+@    xaxis  label "Cluster size"
+@    yaxis  label "()"
+@TYPE xy
+    0     0.000
+    1     0.620
+    2     0.498
+    3     0.042
+    4     0.092
+    5     0.068
+    6     0.068
+    7     0.004
+    8     0.012
+    9     0.002
+   10     0.000
+   11     0.000
+   12     0.000
+   13     0.000
+   14     0.004
+   15     0.000
+   16     0.006
+   17     0.000
+   18     0.000
+   19     0.008
+   20     0.040
+   21     0.028
+   22     0.032
+   23     0.008
+   24     0.008
+   25     0.006
+   26     0.014
+   27     0.028
+   28     0.014
+   29     0.012
+   30     0.040
+   31     0.004
+   32     0.012
+   33     0.002
+   34     0.002
+   35     0.000
+   36     0.000
+   37     0.000
+   38     0.010
+   39     0.000
+   40     0.000
+   41     0.008
+   42     0.000
+   43     0.030
+   44     0.002
+   45     0.006
+   46     0.022
+   47     0.030
+   48     0.026
+   49     0.036
+   50     0.054
+   51     0.086
+   52     0.186
+   53     0.152
+   54     0.218
+   55     0.000

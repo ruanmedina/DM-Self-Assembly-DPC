@@ -1,0 +1,73 @@
+# This file was created Mon Oct 21 16:28:22 2019
+# Created by:
+#                    :-) GROMACS - gmx clustsize, 2019.3 (-:
+# 
+# Executable:   /home/glaznmann/software/gmx2019.3/bin/gmx
+# Data prefix:  /home/glaznmann/software/gmx2019.3
+# Working dir:  /home/glaznmann/ALL_DPC/DPC2
+# Command line:
+#   gmx clustsize -s gromacs.tpr -f imaged_skip.xtc -mol -cut 1.8 -pbc
+# gmx clustsize is part of G R O M A C S:
+#
+# Getting the Right Output Means no Artefacts in Calculating Stuff
+#
+@    title "Cluster size distribution"
+@    xaxis  label "Cluster size"
+@    yaxis  label "()"
+@TYPE xy
+    0     0.000
+    1     0.298
+    2     0.236
+    3     0.008
+    4     0.042
+    5     0.032
+    6     0.052
+    7     0.004
+    8     0.000
+    9     0.000
+   10     0.000
+   11     0.002
+   12     0.000
+   13     0.000
+   14     0.002
+   15     0.000
+   16     0.000
+   17     0.000
+   18     0.000
+   19     0.002
+   20     0.010
+   21     0.004
+   22     0.014
+   23     0.000
+   24     0.000
+   25     0.004
+   26     0.002
+   27     0.006
+   28     0.000
+   29     0.004
+   30     0.016
+   31     0.000
+   32     0.004
+   33     0.002
+   34     0.002
+   35     0.000
+   36     0.000
+   37     0.000
+   38     0.000
+   39     0.000
+   40     0.000
+   41     0.002
+   42     0.000
+   43     0.018
+   44     0.000
+   45     0.000
+   46     0.004
+   47     0.030
+   48     0.030
+   49     0.010
+   50     0.018
+   51     0.042
+   52     0.166
+   53     0.144
+   54     0.500
+   55     0.000

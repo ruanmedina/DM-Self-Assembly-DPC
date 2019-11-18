@@ -1,0 +1,17 @@
+# This file was created Fri Nov  8 16:38:46 2019
+# Created by:
+#                    :-) GROMACS - gmx clustsize, 2019.3 (-:
+# 
+# Executable:   /home/glaznmann/software/gmx2019.3/bin/gmx
+# Data prefix:  /home/glaznmann/software/gmx2019.3
+# Working dir:  /home/glaznmann/ALL_DPC/DPC2
+# Command line:
+#   gmx clustsize -s gromacs.tpr -f imaged_skip.xtc -mol -cut 1.9 -pbc
+# gmx clustsize is part of G R O M A C S:
+#
+# God Rules Over Mankind, Animals, Cosmos and Such
+#
+@    title "Temperature of largest cluster"
+@    xaxis  label "Time (ps)"
+@    yaxis  label "T (K)"
+@TYPE xy
