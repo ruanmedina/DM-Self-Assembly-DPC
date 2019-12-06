@@ -1,3 +1,0 @@
-Testes com diferentes metodos de normalização de dos sobre as coordenadas dos centros de massas das moléculas na dinâmica.
-
-Testes efetuados sobre o agrupamento com DBSCAN (eps=0.14) com alteração de distancia periodica proposta. 
